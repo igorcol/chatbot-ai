@@ -22,7 +22,7 @@ export default function Chat(props: ChatProps) {
   });
 
   return (
-    <Card className="w-[440px]">
+    <Card className="w-[800px]">
       <CardHeader>
         <CardTitle>Chat AI</CardTitle>
         <CardDescription>Using Versel SDK to create a chatbot.</CardDescription>
