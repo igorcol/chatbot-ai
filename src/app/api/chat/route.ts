@@ -9,10 +9,7 @@ export async function POST(req: Request) {
 
   const result = streamText({
     model: openai('gpt-4o'),
-    messages: [
-      { "role": "system", "content": "Responda formatando o texto em Markdown." },
-      { "role": "user", "content": "Liste três ideias de startup." }
-    ]
+    messages,
   });
 
   return result.toDataStreamResponse();
