@@ -11,14 +11,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useChat } from "@ai-sdk/react";
+import ReactMarkdown from "react-markdown";
 
 export interface ChatProps {}
 
 export default function Chat(props: ChatProps) {
   const { messages, input, handleInputChange, handleSubmit } = useChat({
-    api: '/api/chat'
+    api: "/api/chat",
   });
 
   return (
@@ -30,30 +31,33 @@ export default function Chat(props: ChatProps) {
 
       <CardContent>
         <ScrollArea className="h-[400px] w-full pr-5">
-        {messages.map((message) => {
-          return (
-            <div key={message.id} className="flex gap-3 text-slate-600 text-sm mb-4">
-              {message.role === 'user' && (
-                <Avatar>
+          {messages.map((message) => {
+            return (
+              <div
+                key={message.id}
+                className="flex gap-3 text-slate-600 text-sm mb-4"
+              >
+                {message.role === "user" && (
+                  <Avatar>
                     <AvatarFallback>IC</AvatarFallback>
                     <AvatarImage src="https://github.com/igorcol.png" />
-                </Avatar>
-              )}
-              {message.role === 'assistant' && (
-                <Avatar>
+                  </Avatar>
+                )}
+                {message.role === "assistant" && (
+                  <Avatar>
                     <AvatarFallback>AI</AvatarFallback>
                     <AvatarImage src="https://github.com/rocketseat.png" />
-                </Avatar>
-              )}
-              <p className="leading-relaxed">
-                <span className="block font-bold text-slate-700">
-                    {message.role === 'user' ? 'Usuário:' : 'ChatBot:'}
-                </span>
-                {message.content}
-              </p>
-            </div>
-          );
-        })}
+                  </Avatar>
+                )}
+                <div className="leading-relaxed">
+                  <span className="block font-bold text-slate-700">
+                    {message.role === "user" ? "Usuário:" : "ChatBot:"}
+                  </span>
+                  <ReactMarkdown>{message.content}</ReactMarkdown>
+                </div>
+              </div>
+            );
+          })}
         </ScrollArea>
       </CardContent>
 
